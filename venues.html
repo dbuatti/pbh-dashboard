@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piano by Heart — Venue Modeler</title>
+<style>
+  :root {
+    --bg: #0e0c14; --card: #1a1723; --border: #2a2438;
+    --text: #e8e2f0; --muted: #9b92ad;
+    --amber: #f0b27a; --purple: #a78bfa; --green: #6ee7a0; --red: #f87171;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    padding: 28px 16px 64px; max-width: 1000px; margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1 { font-size: 26px; font-weight: 600; }
+  .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .tabs { display: flex; gap: 8px; margin: 22px 0 18px; flex-wrap: wrap; }
+  .tab {
+    padding: 9px 16px; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 600;
+    background: var(--card); border: 1px solid var(--border); color: var(--muted);
+  }
+  .tab.active { color: var(--text); border-color: var(--purple); background: rgba(167,139,250,.12); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; }
+  h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--amber); margin-bottom: 12px; font-weight: 600; }
+  .profile { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+  .profile b { color: var(--text); font-weight: 600; }
+  .inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  .field label { display: block; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .field input {
+    width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    border-radius: 8px; padding: 8px 10px; font-size: 14px;
+  }
+  .field input:focus { outline: none; border-color: var(--purple); }
+  .results { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+  .metric { text-align: center; padding: 14px 8px; }
+  .metric .v { font-size: 22px; font-weight: 700; }
+  .metric .l { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .metric.net .v { color: var(--green); }
+  .metric.warn .v { color: var(--amber); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; color: var(--muted); font-weight: 500; padding: 7px 8px; border-bottom: 1px solid var(--border); }
+  td { padding: 7px 8px; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  td.r, th.r { text-align: right; }
+  .good { color: var(--green); font-weight: 600; }
+  .soft { color: var(--amber); font-weight: 600; }
+  .tight { color: var(--red); font-weight: 600; }
+  .note { font-size: 12.5px; color: var(--muted); line-height: 1.65; margin-top: 10px; }
+  .note b { color: var(--text); }
+  .energy { border-left: 3px solid var(--purple); padding-left: 14px; font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+  .energy b { color: var(--text); }
+  a { color: var(--purple); text-decoration: none; }
+  .hidden { display: none; }
+  .footnote { font-size: 11.5px; color: var(--muted); margin-top: 16px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<h1>💰 Venue Modeler</h1>
+<div class="sub">Ticket revenue vs venue costs, per venue. Edit any number — everything recalculates. Fees = Humanitix 4% + $0.99/ticket incl GST, absorbed by you.</div>
+
+<div class="tabs" id="tabs">
+  <div class="tab active" data-v="humm">Inner HUMM (baseline)</div>
+  <div class="tab" data-v="ayg">Artful Yoga Gallery</div>
+  <div class="tab" data-v="stpeters">St Peter's (estimate)</div>
+  <div class="tab" data-v="blank">Blank venue</div>
+</div>
+
+<!-- ============ HUMM ============ -->
+<div class="venue" id="v-humm">
+  <div class="card">
+    <h3>Venue profile</h3>
+    <div class="profile">
+      <b>Inner HUMM</b> — 144 St Kilda Rd, St Kilda. 11 futons. Weekend hire $180+GST ($198) for 2 hrs, 4:30–6:30. Mid-week $150+GST. Hosted session #1 (12 sold, $333) and #2 (19 Dec, published). Sharon promotes through HUMM channels; door code provided; familiar load-in.
+    </div>
+  </div>
+  <div class="card">
+    <h3>Inputs</h3>
+    <div class="inputs">
+      <div class="field"><label>Capacity</label><input type="number" value="11" oninput="calc('humm')"></div>
+      <div class="field"><label>EB tickets</label><input type="number" value="5" oninput="calc('humm')"></div>
+      <div class="field"><label>EB price $</label><input type="number" value="35" oninput="calc('humm')"></div>
+      <div class="field"><label>Std price $</label><input type="number" value="40" oninput="calc('humm')"></div>
+      <div class="field"><label>Hire $</label><input type="number" value="198" oninput="calc('humm')"></div>
+      <div class="field"><label>Cleaning $</label><input type="number" value="0" oninput="calc('humm')"></div>
+      <div class="field"><label>Equipment $</label><input type="number" value="0" oninput="calc('humm')"></div>
+      <div class="field"><label>Other $</label><input type="number" value="0" oninput="calc('humm')"></div>
+    </div>
+  </div>
+  <div class="card"><h3>Sell-out</h3><div class="results" id="res-humm"></div></div>
+  <div class="card">
+    <h3>Pricing tiers (sell-out)</h3>
+    <table id="sc-humm"></table>
+  </div>
+  <div class="card"><h3>Energetic read</h3>
+    <div class="energy"><b>Deep intimacy.</b> 11 people you mostly know or who found HUMM. Low promotion risk, low set-up burden, the room does the work. Ceiling: ~$190/session. This is the hearth — the place the work feels most alive. Don't grow out of it; grow beside it.</div>
+  </div>
+</div>
+
+<!-- ============ AYG ============ -->
+<div class="venue hidden" id="v-ayg">
+  <div class="card">
+    <h3>Venue profile</h3>
+    <div class="profile">
+      <b>Artful Yoga Gallery</b> — not-for-profit community arts/wellness space. <b>25 mats, 40+ chairs, 7 blankets, PA + projector for hire.</b><br><br>
+      <b>Subsidised collab rate: $100+GST/hr ($110) — inclusive of bump-in AND bump-out</b> (standard $180–200/hr). Overtime $100/hr from deposit. Equipment $20+GST/hr. Cleaning $150 flat (+$100/hr beyond 1 hr). No RSA needed (tea not alcohol).<br><br>
+      <b>Terms:</b> 20% deposit to secure · full payment 20 days prior · cancel/reschedule up to 21 days out, no refunds, one date move · they promote you (1 collab post) · you bring console + mic · they can supply trauma-informed staff if needed.
+    </div>
+  </div>
+  <div class="card">
+    <h3>Inputs — hire hours include bump-in/out (default 4 hrs: 1 in + 2 event + 1 out)</h3>
+    <div class="inputs">
+      <div class="field"><label>Capacity</label><input type="number" value="25" oninput="calc('ayg')"></div>
+      <div class="field"><label>EB tickets</label><input type="number" value="5" oninput="calc('ayg')"></div>
+      <div class="field"><label>EB price $</label><input type="number" value="35" oninput="calc('ayg')"></div>
+      <div class="field"><label>Std price $</label><input type="number" value="40" oninput="calc('ayg')"></div>
+      <div class="field"><label>Hire $/hr</label><input type="number" value="110" oninput="calc('ayg')"></div>
+      <div class="field"><label>Hire hrs</label><input type="number" value="4" oninput="calc('ayg')"></div>
+      <div class="field"><label>Cleaning $</label><input type="number" value="165" oninput="calc('ayg')"></div>
+      <div class="field"><label>Equip $/hr</label><input type="number" value="22" oninput="calc('ayg')"></div>
+      <div class="field"><label>Equip hrs</label><input type="number" value="4" oninput="calc('ayg')"></div>
+      <div class="field"><label>Other $</label><input type="number" value="0" oninput="calc('ayg')"></div>
+    </div>
+  </div>
+  <div class="card"><h3>Sell-out</h3><div class="results" id="res-ayg"></div></div>
+  <div class="card">
+    <h3>Pricing tiers (sell-out)</h3>
+    <table id="sc-ayg"></table>
+    <div class="note"><b>Suggestion:</b> this is a bigger, differently-shaped room with AYG's community behind it. Consider stepping to $40/$45 — the $5 uplift pays the cleaning fee on its own. Their audience skews wellness-curious; the not-for-profit mission angle suits your "healing work" framing.</div>
+  </div>
+  <div class="card"><h3>Energetic read</h3>
+    <div class="energy"><b>Community scale-up.</b> 25 people is 2.3× HUMM — more strangers, more setup (their mats/chairs/blankets help), 4 hrs of venue commitment vs 2. Break-even lands around 16 tickets: below that you're working hard for pocket money. The collab post and AYG's mission alignment are worth real marketing value. Run it when you have a full month's promo runway, not as a swap-in for HUMM.</div>
+  </div>
+</div>
+
+<!-- ============ ST PETER'S ============ -->
+<div class="venue hidden" id="v-stpeters">
+  <div class="card">
+    <h3>Venue profile — ESTIMATE, needs research</h3>
+    <div class="profile">
+      <b>St Peter's (hypothetical)</b> — church hall scale. <b>30–50 mats possible.</b> Numbers below are placeholders from our earlier conversation (~$1,000/night potential). Hire rate, cleaning, acoustics, and piano/provision all unknown — <b>replace every number once you talk to them.</b>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Inputs</h3>
+    <div class="inputs">
+      <div class="field"><label>Capacity</label><input type="number" value="40" oninput="calc('stpeters')"></div>
+      <div class="field"><label>EB tickets</label><input type="number" value="8" oninput="calc('stpeters')"></div>
+      <div class="field"><label>EB price $</label><input type="number" value="35" oninput="calc('stpeters')"></div>
+      <div class="field"><label>Std price $</label><input type="number" value="40" oninput="calc('stpeters')"></div>
+      <div class="field"><label>Hire $</label><input type="number" value="400" oninput="calc('stpeters')"></div>
+      <div class="field"><label>Cleaning $</label><input type="number" value="150" oninput="calc('stpeters')"></div>
+      <div class="field"><label>Equipment $</label><input type="number" value="100" oninput="calc('stpeters')"></div>
+      <div class="field"><label>Other $</label><input type="number" value="0" oninput="calc('stpeters')"></div>
+    </div>
+  </div>
+  <div class="card"><h3>Sell-out</h3><div class="results" id="res-stpeters"></div></div>
+  <div class="card">
+    <h3>Pricing tiers (sell-out)</h3>
+    <table id="sc-stpeters"></table>
+    <div class="note"><b>Suggestion:</b> at this scale, keep $40 standard minimum — lower prices on 40 seats means working 4× harder for the same money. A co-host (sound bath facilitator, yoga studio, choir crossover) could share promotion and risk.</div>
+  </div>
+  <div class="card"><h3>Energetic read</h3>
+    <div class="energy"><b>Event mode.</b> 40 people is a different job: load-in crew, co-hosts, real marketing, a bigger version of you. Financially the ceiling opens (~$800–1,100/session). Energetically, ask whether you want this as the main thing or as a quarterly "gathering" — the intimacy that makes Piano by Heart alive is easier to protect at HUMM/AYG size.</div>
+  </div>
+</div>
+
+<!-- ============ BLANK ============ -->
+<div class="venue hidden" id="v-blank">
+  <div class="card">
+    <h3>New venue — type over everything</h3>
+    <div class="profile">Name it, drop in the hire terms from their website or email, and the modeler does the rest. Zero every field you don't need.</div>
+  </div>
+  <div class="card">
+    <h3>Inputs</h3>
+    <div class="inputs">
+      <div class="field"><label>Capacity</label><input type="number" value="0" oninput="calc('blank')"></div>
+      <div class="field"><label>EB tickets</label><input type="number" value="0" oninput="calc('blank')"></div>
+      <div class="field"><label>EB price $</label><input type="number" value="35" oninput="calc('blank')"></div>
+      <div class="field"><label>Std price $</label><input type="number" value="40" oninput="calc('blank')"></div>
+      <div class="field"><label>Hire $</label><input type="number" value="0" oninput="calc('blank')"></div>
+      <div class="field"><label>Cleaning $</label><input type="number" value="0" oninput="calc('blank')"></div>
+      <div class="field"><label>Equipment $</label><input type="number" value="0" oninput="calc('blank')"></div>
+      <div class="field"><label>Other $</label><input type="number" value="0" oninput="calc('blank')"></div>
+    </div>
+  </div>
+  <div class="card"><h3>Sell-out</h3><div class="results" id="res-blank"></div></div>
+  <div class="card"><h3>Pricing tiers (sell-out)</h3><table id="sc-blank"></table></div>
+</div>
+
+<div class="footnote">
+  Fee math: Humanitix charges 4% + $0.99 per ticket ex-GST; with GST absorbed that's (4% + $0.99) × 1.1 — e.g. $2.63 on a $35 ticket, $2.85 on $40. Break-even counts EB tickets first. Hire/cleaning/equipment figures include GST where the venue quotes +GST. Edit anything — nothing is saved server-side; refresh restores defaults.
+  <br><br><a href="index.html">← Back to dashboard</a>
+</div>
+
+<script>
+var fee = function(p){ return (0.04*p + 0.99) * 1.1; };
+function $(id){ return document.getElementById(id); }
+function val(v,vid){
+  var el = document.querySelector('#v-'+v+' input');
+  var inputs = document.querySelectorAll('#v-'+v+' .field input');
+  var map = ['capacity','ebCount','ebPrice','stdPrice','hireRate','hireHrs','cleaning','equipRate','equipHrs','other'];
+  var idx = map.indexOf(vid);
+  return parseFloat(inputs[idx].value) || 0;
+}
+function fmt(n){ return '$' + Math.round(n).toLocaleString(); }
+
+function calc(v){
+  var capacity = val(v,'capacity'), ebCount = Math.min(val(v,'ebCount'), capacity),
+      ebPrice = val(v,'ebPrice'), stdPrice = val(v,'stdPrice'),
+      hireRate = val(v,'hireRate'), hireHrs = val(v,'hireHrs'),
+      cleaning = val(v,'cleaning'), equipRate = val(v,'equipRate'),
+      equipHrs = val(v,'equipHrs'), other = val(v,'other');
+
+  var stdCount = Math.max(0, capacity - ebCount);
+  var gross = ebCount*ebPrice + stdCount*stdPrice;
+  var fees = ebCount*fee(ebPrice) + stdCount*fee(stdPrice);
+  var costs = (v==='humm'||v==='stpeters'||v==='blank' ? hireRate : hireRate*hireHrs) + cleaning + equipRate*equipHrs + other;
+  var net = gross - fees - costs;
+
+  $('res-'+v).innerHTML =
+    '<div class="metric"><div class="v">'+fmt(gross)+'</div><div class="l">Gross takings</div></div>' +
+    '<div class="metric warn"><div class="v">'+fmt(costs)+'</div><div class="l">Venue costs</div></div>' +
+    '<div class="metric warn"><div class="v">'+fmt(fees)+'</div><div class="l">Ticket fees</div></div>' +
+    '<div class="metric net"><div class="v">'+fmt(net)+'</div><div class="l">NET profit</div></div>' +
+    '<div class="metric"><div class="v">'+fmt(net/(capacity||1))+'</div><div class="l">Per person</div></div>';
+
+  // scenarios
+  var tiers = [
+    {name:'Current pricing', eb:ebPrice, std:stdPrice},
+    {name:'Step up +$5', eb:ebPrice+5, std:stdPrice+5},
+    {name:'Premium (+$10)', eb:ebPrice+10, std:stdPrice+10}
+  ];
+  var html = '<tr><th>Tier</th><th class="r">Gross</th><th class="r">Costs+fees</th><th class="r">NET</th></tr>';
+  tiers.forEach(function(t){
+    var g = ebCount*t.eb + stdCount*t.std;
+    var f = ebCount*fee(t.eb) + stdCount*fee(t.std);
+    var n = g - f - costs;
+    var cls = n > 400 ? 'good' : (n > 150 ? 'soft' : 'tight');
+    html += '<tr><td>'+t.name+'<br><span style="color:var(--muted);font-size:11px">EB $'+t.eb+' ×'+ebCount+' · Std $'+t.std+' ×'+stdCount+'</span></td>'+
+            '<td class="r">'+fmt(g)+'</td><td class="r">'+fmt(f+costs)+'</td><td class="r '+cls+'">'+fmt(n)+'</td></tr>';
+  });
+  $('sc-'+v).innerHTML = html;
+
+  // break-even (EB sold first, then std)
+  var sold = 0, acc = -costs;
+  for (var i = 0; i < capacity; i++){
+    var price = i < ebCount ? ebPrice : stdPrice;
+    acc += price - fee(price);
+    sold++;
+    if (acc >= 0) break;
+  }
+  var beEl = document.querySelector('#res-'+v+' .metric:last-child');
+  var note = acc < 0 ? 'not reached' : sold + ' tickets';
+  $('res-'+v).insertAdjacentHTML('beforeend',
+    '<div class="metric warn"><div class="v">'+note+'</div><div class="l">Break-even</div></div>');
+}
+
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('active'); });
+    t.classList.add('active');
+    document.querySelectorAll('.venue').forEach(function(x){ x.classList.add('hidden'); });
+    var v = t.getAttribute('data-v');
+    $('v-'+v).classList.remove('hidden');
+    calc(v);
+  });
+});
+
+['humm','ayg','stpeters','blank'].forEach(calc);
+</script>
+</body>
+</html>
