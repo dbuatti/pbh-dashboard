@@ -67,7 +67,11 @@
 <div class="tabs" id="tabs">
   <div class="tab active" data-v="humm">Inner HUMM (baseline)</div>
   <div class="tab" data-v="ayg">Artful Yoga Gallery</div>
-  <div class="tab" data-v="stpeters">St Peter's (estimate)</div>
+  <div class="tab" data-v="ilh">Inner Light Hub</div>
+  <div class="tab" data-v="brunswick">Our Lady's Hall (Brunswick)</div>
+  <div class="tab" data-v="stpeters">St Peter's (East Melb)</div>
+  <div class="tab" data-v="space">The Space (Theatre)</div>
+  <div class="tab" data-v="infinite">Infinite Co (St Kilda)</div>
   <div class="tab" data-v="blank">Blank venue</div>
 </div>
 
@@ -76,7 +80,7 @@
   <div class="card">
     <h3>Venue profile</h3>
     <div class="profile">
-      <b>Inner HUMM</b> — 144 St Kilda Rd, St Kilda. 11 futons. Weekend hire $180+GST ($198) for 2 hrs, 4:30–6:30. Mid-week $150+GST. Hosted session #1 (12 sold, $333) and #2 (19 Dec, published). Sharon promotes through HUMM channels; door code provided; familiar load-in.
+      <b>Inner HUMM</b> — 144 St Kilda Rd, St Kilda. 11 futons. Weekend hire $180+GST ($198) for 2 hrs, 4:30–6:30. Mid-week $150+GST. Hosted session #1 (12 sold, $333) and #2 (19 Dec, published). Sharon promotes through HUMM channels; door code provided; familiar load-in. Baseline venue.
     </div>
   </div>
   <div class="card">
@@ -138,24 +142,92 @@
   </div>
 </div>
 
-<!-- ============ ST PETER'S ============ -->
-<div class="venue hidden" id="v-stpeters">
+<!-- ============ INNER LIGHT HUB ============ -->
+<div class="venue hidden" id="v-ilh">
   <div class="card">
-    <h3>Venue profile — ESTIMATE, needs research</h3>
+    <h3>Venue profile</h3>
     <div class="profile">
-      <b>St Peter's (hypothetical)</b> — church hall scale. <b>30–50 mats possible.</b> Numbers below are placeholders from our earlier conversation (~$1,000/night potential). Hire rate, cleaning, acoustics, and piano/provision all unknown — <b>replace every number once you talk to them.</b>
+      <b>Inner Light Hub</b> — 772 Glen Huntly Rd, Caulfield South VIC 3162. Holistic wellness space (Victoria Tsonis, Liza, Karina). <b>Workshop space: 4–6 lying down (10 seated).</b> Mats, blankets, pillows and candles provided; kitchen, toilets, wifi and waiting area included. Evening bookings fine. Room hire flyer: Workshop space $50/hr or $150/day; private consulting room $25/hr ($100/6-hr day); practitioner room with treatment table $30/hr ($100/6-hr day). Tea/coffee included. Friendly, collaborative owner — open to session exchange.
     </div>
   </div>
   <div class="card">
-    <h3>Inputs</h3>
+    <h3>Inputs — hire by the hour (default 3 hrs: 1 in + 1.5 event + 0.5 out)</h3>
+    <div class="inputs">
+      <div class="field"><label>Capacity</label><input type="number" value="5" oninput="calc('ilh')"></div>
+      <div class="field"><label>EB tickets</label><input type="number" value="2" oninput="calc('ilh')"></div>
+      <div class="field"><label>EB price $</label><input type="number" value="35" oninput="calc('ilh')"></div>
+      <div class="field"><label>Std price $</label><input type="number" value="40" oninput="calc('ilh')"></div>
+      <div class="field"><label>Hire $/hr</label><input type="number" value="50" oninput="calc('ilh')"></div>
+      <div class="field"><label>Hire hrs</label><input type="number" value="3" oninput="calc('ilh')"></div>
+      <div class="field"><label>Cleaning $</label><input type="number" value="0" oninput="calc('ilh')"></div>
+      <div class="field"><label>Equip $/hr</label><input type="number" value="0" oninput="calc('ilh')"></div>
+      <div class="field"><label>Equip hrs</label><input type="number" value="0" oninput="calc('ilh')"></div>
+      <div class="field"><label>Other $</label><input type="number" value="0" oninput="calc('ilh')"></div>
+    </div>
+  </div>
+  <div class="card"><h3>Sell-out</h3><div class="results" id="res-ilh"></div></div>
+  <div class="card">
+    <h3>Pricing tiers (sell-out)</h3>
+    <table id="sc-ilh"></table>
+    <div class="note"><b>Suggestion:</b> tiny room (4–6 on mats) — this is the most intimate of all venues, smaller than HUMM. Treat it as a "salon" or a private/duet session, or pair with the consulting room for 1:1 kinesiology. $50/hr is the cheapest hire; the $150/day rate only wins if you stay 4+ hrs. Bring your own keyboard (no piano on site).</div>
+  </div>
+  <div class="card"><h3>Energetic read</h3>
+    <div class="energy"><b>Salon scale.</b> 4–6 people on mats is a different, smaller thing — almost a private concert. Very low risk, very low revenue ceiling (~$120–200). Worth it as a monthly "by donation" or as a kinesiology-adjacent offering, and as a relationship-builder with Victoria. Don't expect it to replace HUMM; let it sit beside it.</div>
+  </div>
+</div>
+
+<!-- ============ OUR LADY'S HALL (BRUNSWICK) ============ -->
+<div class="venue hidden" id="v-brunswick">
+  <div class="card">
+    <h3>Venue profile</h3>
+    <div class="profile">
+      <b>Our Lady Help of Christians Hall</b> — 49 Nicholson Street, Brunswick East (Emmaus Parish, John Maulden, Facility Manager). <b>Large carpeted area plus timber dance floor, good for mats.</b> No piano. Lighting not dimmable (wall up-lights only, or with fluorescents/downlights). <b>$330 inc GST for a 3-hour booking</b> (St Ambrose's Hall is unavailable — regular client). Capacity not stated; estimate 30–40. Tea/kitchen? Not specified in the email — confirm. St Ambrose's itself (3 Dawson St) is currently unavailable.
+    </div>
+  </div>
+  <div class="card">
+    <h3>Inputs — flat 3-hour hire (inc GST)</h3>
+    <div class="inputs">
+      <div class="field"><label>Capacity</label><input type="number" value="30" oninput="calc('brunswick')"></div>
+      <div class="field"><label>EB tickets</label><input type="number" value="6" oninput="calc('brunswick')"></div>
+      <div class="field"><label>EB price $</label><input type="number" value="35" oninput="calc('brunswick')"></div>
+      <div class="field"><label>Std price $</label><input type="number" value="40" oninput="calc('brunswick')"></div>
+      <div class="field"><label>Hire $</label><input type="number" value="330" oninput="calc('brunswick')"></div>
+      <div class="field"><label>Cleaning $</label><input type="number" value="0" oninput="calc('brunswick')"></div>
+      <div class="field"><label>Equipment $</label><input type="number" value="0" oninput="calc('brunswick')"></div>
+      <div class="field"><label>Other $</label><input type="number" value="0" oninput="calc('brunswick')"></div>
+    </div>
+  </div>
+  <div class="card"><h3>Sell-out</h3><div class="results" id="res-brunswick"></div></div>
+  <div class="card">
+    <h3>Pricing tiers (sell-out)</h3>
+    <table id="sc-brunswick"></table>
+    <div class="note"><b>Suggestion:</b> non-dimmable lighting is the killer for Piano by Heart (the work needs dim). Up-lights alone might be enough if they're warm — go and look before committing. No piano on site, so bring the PX-S1000/MainStage rig. Confirm kitchen/tea access and capacity before booking. Sunday evening slot is available.</div>
+  </div>
+  <div class="card"><h3>Energetic read</h3>
+    <div class="energy"><b>Hall scale.</b> 30 people in a church hall is a bigger, more formal room than HUMM — closer to St Peter's territory. Break-even is high (~20 tickets) because the hire is $330 flat. Run it as a quarterly "gathering" with a co-host or sound-bath collaborator, not as a monthly. The carpeted mat area is a genuine plus.</div>
+  </div>
+</div>
+
+<!-- ============ ST PETER'S ============ -->
+<div class="venue hidden" id="v-stpeters">
+  <div class="card">
+    <h3>Venue profile — capacity estimate, confirm with Eugene</h3>
+    <div class="profile">
+      <b>St Peter's Eastern Hill Anglican Church</b> — 15 Gisborne Street, East Melbourne (Eugene, Parish Administrator). <b>Rates start at $150/hr ex GST</b> ($165/hr inc GST). 3-hour minimum, flexible. <b>Piano available</b> — need to name the pianist (ideally a musician) so owners can be informed. Saturday afternoons generally fine. Address in a beautiful church; acoustics likely excellent. Capacity not stated — estimate 40 (church hall). Confirm hall size, seating/mats, lighting and kitchen.
+    </div>
+  </div>
+  <div class="card">
+    <h3>Inputs — hourly (default 3 hrs)</h3>
     <div class="inputs">
       <div class="field"><label>Capacity</label><input type="number" value="40" oninput="calc('stpeters')"></div>
       <div class="field"><label>EB tickets</label><input type="number" value="8" oninput="calc('stpeters')"></div>
       <div class="field"><label>EB price $</label><input type="number" value="35" oninput="calc('stpeters')"></div>
       <div class="field"><label>Std price $</label><input type="number" value="40" oninput="calc('stpeters')"></div>
-      <div class="field"><label>Hire $</label><input type="number" value="400" oninput="calc('stpeters')"></div>
-      <div class="field"><label>Cleaning $</label><input type="number" value="150" oninput="calc('stpeters')"></div>
-      <div class="field"><label>Equipment $</label><input type="number" value="100" oninput="calc('stpeters')"></div>
+      <div class="field"><label>Hire $/hr</label><input type="number" value="165" oninput="calc('stpeters')"></div>
+      <div class="field"><label>Hire hrs</label><input type="number" value="3" oninput="calc('stpeters')"></div>
+      <div class="field"><label>Cleaning $</label><input type="number" value="0" oninput="calc('stpeters')"></div>
+      <div class="field"><label>Equip $/hr</label><input type="number" value="0" oninput="calc('stpeters')"></div>
+      <div class="field"><label>Equip hrs</label><input type="number" value="0" oninput="calc('stpeters')"></div>
       <div class="field"><label>Other $</label><input type="number" value="0" oninput="calc('stpeters')"></div>
     </div>
   </div>
@@ -163,10 +235,76 @@
   <div class="card">
     <h3>Pricing tiers (sell-out)</h3>
     <table id="sc-stpeters"></table>
-    <div class="note"><b>Suggestion:</b> at this scale, keep $40 standard minimum — lower prices on 40 seats means working 4× harder for the same money. A co-host (sound bath facilitator, yoga studio, choir crossover) could share promotion and risk.</div>
+    <div class="note"><b>Suggestion:</b> at this scale, keep $40 standard minimum — lower prices on 40 seats means working 4× harder for the same money. A co-host (sound bath facilitator, yoga studio, choir crossover) could share promotion and risk. The on-site piano is a big win if it's playable; otherwise bring the rig.</div>
   </div>
   <div class="card"><h3>Energetic read</h3>
     <div class="energy"><b>Event mode.</b> 40 people is a different job: load-in crew, co-hosts, real marketing, a bigger version of you. Financially the ceiling opens (~$800–1,100/session). Energetically, ask whether you want this as the main thing or as a quarterly "gathering" — the intimacy that makes Piano by Heart alive is easier to protect at HUMM/AYG size.</div>
+  </div>
+</div>
+
+<!-- ============ THE SPACE ============ -->
+<div class="venue hidden" id="v-space">
+  <div class="card">
+    <h3>Venue profile</h3>
+    <div class="profile">
+      <b>The Space</b> — Melbourne dance/theatre studios (info@thespace.com.au). <b>Theatre room: $65/hr, upright piano (untuned), live acoustics.</b> New York studio $55/hr (no piano, bring your own). SkyDeck $130/hr. Half-hour booking increments. Capacity not stated — estimate 20. Piano not recently tuned (insurance) — recommend bringing your own keyboard. Good acoustics for voice/piano. Used previously for Resonance choir.
+    </div>
+  </div>
+  <div class="card">
+    <h3>Inputs — hourly (default 3 hrs)</h3>
+    <div class="inputs">
+      <div class="field"><label>Capacity</label><input type="number" value="20" oninput="calc('space')"></div>
+      <div class="field"><label>EB tickets</label><input type="number" value="4" oninput="calc('space')"></div>
+      <div class="field"><label>EB price $</label><input type="number" value="35" oninput="calc('space')"></div>
+      <div class="field"><label>Std price $</label><input type="number" value="40" oninput="calc('space')"></div>
+      <div class="field"><label>Hire $/hr</label><input type="number" value="65" oninput="calc('space')"></div>
+      <div class="field"><label>Hire hrs</label><input type="number" value="3" oninput="calc('space')"></div>
+      <div class="field"><label>Cleaning $</label><input type="number" value="0" oninput="calc('space')"></div>
+      <div class="field"><label>Equip $/hr</label><input type="number" value="0" oninput="calc('space')"></div>
+      <div class="field"><label>Equip hrs</label><input type="number" value="0" oninput="calc('space')"></div>
+      <div class="field"><label>Other $</label><input type="number" value="0" oninput="calc('space')"></div>
+    </div>
+  </div>
+  <div class="card"><h3>Sell-out</h3><div class="results" id="res-space"></div></div>
+  <div class="card">
+    <h3>Pricing tiers (sell-out)</h3>
+    <table id="sc-space"></table>
+    <div class="note"><b>Suggestion:</b> cheap hire ($65/hr) and live acoustics, but the upright is untuned — bring the PX-S1000/MainStage rig. Mid-size (20). Good backup/overflow venue and a natural home for Resonance choir crossover events. Confirm exact address and capacity before booking.</div>
+  </div>
+  <div class="card"><h3>Energetic read</h3>
+    <div class="energy"><b>Mid-size, live room.</b> 20 people in a resonant theatre is a sweet spot between HUMM intimacy and event scale. Low hire cost keeps break-even modest (~10 tickets). The untuned piano and dance-studio vibe are the trade-offs — fine if you bring your own sound.</div>
+  </div>
+</div>
+
+<!-- ============ INFINITE CO ============ -->
+<div class="venue hidden" id="v-infinite">
+  <div class="card">
+    <h3>Venue profile</h3>
+    <div class="profile">
+      <b>Infinite Co</b> — 14 Pakington Street, St Kilda VIC 3182 (Elle/Ecca/Jessie). <b>30 mats fit (3 rows of 10).</b> Lamps and fairy lights create a dim, cosy atmosphere; main overhead lights dimmable. <b>Hire: $240 + GST for 3 hours</b> (reduced from $100/hr); same rate for regular fortnightly bookings. <b>Daytime only: 11am–5pm (5:30 latest)</b> — evening classes start 6pm, so no evening slot. Bring your own piano. Used previously for Resonance.
+    </div>
+  </div>
+  <div class="card">
+    <h3>Inputs — flat 3-hour hire ($240 + GST)</h3>
+    <div class="inputs">
+      <div class="field"><label>Capacity</label><input type="number" value="30" oninput="calc('infinite')"></div>
+      <div class="field"><label>EB tickets</label><input type="number" value="6" oninput="calc('infinite')"></div>
+      <div class="field"><label>EB price $</label><input type="number" value="35" oninput="calc('infinite')"></div>
+      <div class="field"><label>Std price $</label><input type="number" value="40" oninput="calc('infinite')"></div>
+      <div class="field"><label>Hire $</label><input type="number" value="264" oninput="calc('infinite')"></div>
+      <div class="field"><label>Cleaning $</label><input type="number" value="0" oninput="calc('infinite')"></div>
+      <div class="field"><label>Equipment $</label><input type="number" value="0" oninput="calc('infinite')"></div>
+      <div class="field"><label>Other $</label><input type="number" value="0" oninput="calc('infinite')"></div>
+    </div>
+  </div>
+  <div class="card"><h3>Sell-out</h3><div class="results" id="res-infinite"></div></div>
+  <div class="card">
+    <h3>Pricing tiers (sell-out)</h3>
+    <table id="sc-infinite"></table>
+    <div class="note"><b>Suggestion:</b> great capacity and dimmable lighting, but the daytime-only window clashes with Piano by Heart's evening format. Best used for a Sunday afternoon "matinee" session or as a Resonance choir venue. The $264/3-hr rate is mid-pack; 30 mats gives a strong ceiling if you can fill it in daylight hours.</div>
+  </div>
+  <div class="card"><h3>Energetic read</h3>
+    <div class="energy"><b>Daytime-only scale.</b> 30 people in a lamp-lit studio is lovely, but the 11am–5pm window means this isn't a Piano by Heart evening — it's a different product (afternoon rest). Don't force the format; either run a Sunday afternoon edition or keep it for Resonance. Break-even ~18 tickets.</div>
   </div>
 </div>
 
@@ -201,13 +339,46 @@
 <script>
 var fee = function(p){ return (0.04*p + 0.99) * 1.1; };
 function $(id){ return document.getElementById(id); }
-function val(v,vid){
-  var el = document.querySelector('#v-'+v+' input');
-  var inputs = document.querySelectorAll('#v-'+v+' .field input');
-  var map = ['capacity','ebCount','ebPrice','stdPrice','hireRate','hireHrs','cleaning','equipRate','equipHrs','other'];
-  var idx = map.indexOf(vid);
-  return parseFloat(inputs[idx].value) || 0;
+
+var FIELD_MAP = {
+  'Capacity':'capacity',
+  'EB tickets':'ebCount',
+  'EB price $':'ebPrice',
+  'Std price $':'stdPrice',
+  'Hire $':'hireRate',
+  'Hire $/hr':'hireRate',
+  'Hire hrs':'hireHrs',
+  'Cleaning $':'cleaning',
+  'Equipment $':'equipRate',
+  'Equip $/hr':'equipRate',
+  'Equip hrs':'equipHrs',
+  'Other $':'other'
+};
+
+function fields(v){
+  return document.querySelectorAll('#v-'+v+' .field');
 }
+
+function hasField(v, key){
+  var fs = fields(v);
+  for (var i=0;i<fs.length;i++){
+    var lab = fs[i].querySelector('label').textContent.trim();
+    if (FIELD_MAP[lab] === key) return true;
+  }
+  return false;
+}
+
+function val(v, key){
+  var fs = fields(v);
+  for (var i=0;i<fs.length;i++){
+    var lab = fs[i].querySelector('label').textContent.trim();
+    if (FIELD_MAP[lab] === key){
+      return parseFloat(fs[i].querySelector('input').value) || 0;
+    }
+  }
+  return 0;
+}
+
 function fmt(n){ return '$' + Math.round(n).toLocaleString(); }
 
 function calc(v){
@@ -220,7 +391,11 @@ function calc(v){
   var stdCount = Math.max(0, capacity - ebCount);
   var gross = ebCount*ebPrice + stdCount*stdPrice;
   var fees = ebCount*fee(ebPrice) + stdCount*fee(stdPrice);
-  var costs = (v==='humm'||v==='stpeters'||v==='blank' ? hireRate : hireRate*hireHrs) + cleaning + equipRate*equipHrs + other;
+
+  var hireCost = hasField(v,'hireHrs') ? (hireRate * (hireHrs || 0)) : hireRate;
+  var equipCost = hasField(v,'equipHrs') ? (equipRate * (equipHrs || 0)) : equipRate;
+  var costs = hireCost + cleaning + equipCost + other;
+
   var net = gross - fees - costs;
 
   $('res-'+v).innerHTML =
@@ -255,7 +430,6 @@ function calc(v){
     sold++;
     if (acc >= 0) break;
   }
-  var beEl = document.querySelector('#res-'+v+' .metric:last-child');
   var note = acc < 0 ? 'not reached' : sold + ' tickets';
   $('res-'+v).insertAdjacentHTML('beforeend',
     '<div class="metric warn"><div class="v">'+note+'</div><div class="l">Break-even</div></div>');
@@ -272,7 +446,9 @@ document.querySelectorAll('.tab').forEach(function(t){
   });
 });
 
-['humm','ayg','stpeters','blank'].forEach(calc);
+['humm','ayg','ilh','brunswick','stpeters','space','infinite','blank'].forEach(calc);
 </script>
 </body>
 </html>
+path">
+/Users/danielebuatti/Projects/pbh-dashboard/venues.html
